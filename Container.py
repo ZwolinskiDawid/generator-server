@@ -10,12 +10,14 @@ class Container:
         self.read_segments()
         self.fill()
 
-    def read_segment_size(self):
+    @staticmethod
+    def read_segment_size():
         DOMTree = minidom.parse('init.xml')
         cNodes = DOMTree.childNodes
         return int(cNodes[0].getElementsByTagName("segmentSize")[0].childNodes[0].toxml())
 
-    def read_size(self):
+    @staticmethod
+    def read_size():
         DOMTree = minidom.parse('init.xml')
         cNodes = DOMTree.childNodes
         return int(cNodes[0].getElementsByTagName("size")[0].childNodes[0].toxml())
@@ -26,7 +28,8 @@ class Container:
         for i in cNodes[0].getElementsByTagName("segment"):
             self.segments.append(i.childNodes[0].toxml())
 
-    def random_block(self, options, block, walkable):
+    @staticmethod
+    def random_block(options, block, walkable):
         if block.walkable == walkable:
             options.append(random.choice(Block.blocks[walkable][block.type]))
 
