@@ -30,13 +30,15 @@ class Block(Thing):
                 types_of_block[walkable].append(type_of_block)
                 Block.blocks[walkable].append(list())
                 index = len(Block.blocks[walkable]) - 1
-                Block.blocks[walkable][index].append(Block(i))
+                Block.blocks[walkable][index].append(Block(i, index, walkable))
             else:
                 index = types_of_block[walkable].index(type_of_block)
-                Block.blocks[walkable][index].append(Block(i))
+                Block.blocks[walkable][index].append(Block(i, index, walkable))
             i += 1
 
-    def __init__(self, appearance):
+    def __init__(self, appearance, type_of_block, walkable):
         Thing.__init__(self, appearance)
+        self.type_of_block = type_of_block
+        self.walkable = walkable
 
 Block.read_table()

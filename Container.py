@@ -5,66 +5,124 @@ class Container:
     def __init__(self):
         self.size = self.read_size()
         self.segmentSize = self.read_segment_size()
-        self.map = [[None]*self.size for i in range(self.size)]
-        self.segments = []
+        self.map = list()
+
+        self.map_of_obstacles = list()
+        self.create_map_of_obstacles()
+
+        self.segments = list()
         self.read_segments()
-        self.fill()
+
+        self.generate_map()
+        self.generate_obstacles()
+
+    def create_map_of_obstacles(self):
+        for i in range(self.size):
+            self.map_of_obstacles.append(list())
+            for j in range(self.size):
+                self.map_of_obstacles[i].append(None)
 
     @staticmethod
     def read_segment_size():
-        DOMTree = minidom.parse('init.xml')
-        cNodes = DOMTree.childNodes
-        return int(cNodes[0].getElementsByTagName("segmentSize")[0].childNodes[0].toxml())
+        dom_tree = minidom.parse('init.xml')
+        nodes = dom_tree.childNodes
+        return int(nodes[0].getElementsByTagName("segmentSize")[0].childNodes[0].toxml())
 
     @staticmethod
     def read_size():
-        DOMTree = minidom.parse('init.xml')
-        cNodes = DOMTree.childNodes
-        return int(cNodes[0].getElementsByTagName("size")[0].childNodes[0].toxml())
+        dom_tree = minidom.parse('init.xml')
+        nodes = dom_tree.childNodes
+        return int(nodes[0].getElementsByTagName("size")[0].childNodes[0].toxml())
 
     def read_segments(self):
-        DOMTree = minidom.parse('segments.xml')
-        cNodes = DOMTree.childNodes
-        for i in cNodes[0].getElementsByTagName("segment"):
+        dom_tree = minidom.parse('segments.xml')
+        nodes = dom_tree.childNodes
+        for i in nodes[0].getElementsByTagName("segment"):
             self.segments.append(i.childNodes[0].toxml())
 
-    @staticmethod
-    def random_block(options, block, walkable):
-        if block.walkable == walkable:
-            options.append(random.choice(Block.blocks[walkable][block.type]))
+    def generate_map(self):
+        for i in range(self.size):
+            self.map.append(list())
+            for j in range(self.size):
 
-    def fill(self):
-        for i in range(self.size / self.segmentSize):
-            for j in range(self.size / self.segmentSize):
+                options = list()
 
-                #  losowanie segmentu
+                if i - 1 < 0 and j - 1 < 0:
+                    options.append(random.choice(random.choice(Block.blocks[1])))
+
+                elif i - 1 < 0:
+                    block = self.map[i][j - 1]
+                    options.append(random.choice(Block.blocks[1][block.type_of_block]))
+
+                elif j - 1 < 0:
+                    block = self.map[i - 1][j]
+                    options.append(random.choice(Block.blocks[1][block.type_of_block]))
+
+                else:
+                    block = self.map[i][j - 1]
+                    options.append(random.choice(Block.blocks[1][block.type_of_block]))
+
+                    block = self.map[i - 1][j]
+                    options.append(random.choice(Block.blocks[1][block.type_of_block]))
+
+                    block = self.map[i - 1][j - 1]
+                    options.append(random.choice(Block.blocks[1][block.type_of_block]))
+
+                if len(options) == 0 or random.randint(1, 10) < 3:
+                    block = random.choice(random.choice(Block.blocks[1]))
+                else:
+                    block = random.choice(options)
+
+                self.map[i].append(block)
+
+    def generate_obstacles(self):
+        for i in range(int(self.size / self.segmentSize)):
+            for j in range(int(self.size / self.segmentSize)):
+
+                #  random segment
                 segment = random.choice(self.segments)
 
                 for k in range(self.segmentSize):
                     for l in range(self.segmentSize):
 
-                        #  odczytywanie poszczegolnego pola segmentu
-                        if segment[k*self.segmentSize+l] == 'o':
-                            walkable = 1
-                        elif segment[k*self.segmentSize+l] == 'x':
-                            walkable = 0
+                        #  reading one field of segment
+                        if segment[k * self.segmentSize + l] == 'x':
 
-                        options = []
+                            options = []
 
-                        if i*self.segmentSize+(k-1) < 0 and j*self.segmentSize+(l-1) < 0:
-                            options.append(random.choice(random.choice(Block.blocks[walkable])))
-                        elif i*self.segmentSize+(k-1) < 0:
-                            self.random_block(options, self.map[i * self.segmentSize + k][j * self.segmentSize + (l - 1)], walkable)
-                        elif j*self.segmentSize+(l-1) < 0:
-                            self.random_block(options, self.map[i * self.segmentSize + (k - 1)][j * self.segmentSize + l], walkable)
-                        else:
-                            self.random_block(options, self.map[i * self.segmentSize + k][j * self.segmentSize + (l - 1)], walkable)
-                            self.random_block(options, self.map[i * self.segmentSize + (k - 1)][j * self.segmentSize + l], walkable)
-                            self.random_block(options, self.map[i * self.segmentSize + (k - 1)][j * self.segmentSize + (l - 1)], walkable)
+                            if i * self.segmentSize + (k - 1) < 0 and j * self.segmentSize + (l - 1) < 0:
+                                options.append(random.choice(random.choice(Block.blocks[0])))
 
-                        if len(options) == 0 or random.randint(1, 10) < 3:
-                            block = random.choice(random.choice(Block.blocks[walkable]))
-                        else:
-                            block = random.choice(options)
+                            elif i * self.segmentSize + (k - 1) < 0:
+                                block = self.map[i * self.segmentSize + k][j * self.segmentSize + (l - 1)]
+                                if block.walkable == 0:
+                                    options.append(random.choice(Block.blocks[0][block.type_of_block]))
 
-                        self.map[i*self.segmentSize+k][j*self.segmentSize+l] = block
+                            elif j * self.segmentSize + (l - 1) < 0:
+                                block = self.map[i * self.segmentSize + (k - 1)][j * self.segmentSize + l]
+                                if block.walkable == 0:
+                                    options.append(random.choice(Block.blocks[0][block.type_of_block]))
+
+                            else:
+                                block = self.map[i * self.segmentSize + k][j * self.segmentSize + (l - 1)]
+                                if block.walkable == 0:
+                                    options.append(random.choice(Block.blocks[0][block.type_of_block]))
+
+                                block = self.map[i * self.segmentSize + (k - 1)][j * self.segmentSize + l]
+                                if block.walkable == 0:
+                                    options.append(random.choice(Block.blocks[0][block.type_of_block]))
+
+                                block = self.map[i * self.segmentSize + (k - 1)][j * self.segmentSize + (l - 1)]
+                                if block.walkable == 0:
+                                    options.append(random.choice(Block.blocks[0][block.type_of_block]))
+
+                            if len(options) == 0 or random.randint(1, 10) < 3:
+                                block = random.choice(random.choice(Block.blocks[0]))
+                            else:
+                                block = random.choice(options)
+
+                            self.map_of_obstacles[i * self.segmentSize + k][j * self.segmentSize + l] = block
+
+C = Container()
+
+
