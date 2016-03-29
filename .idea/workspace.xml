@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="498a4ed3-6c37-44f2-915f-4d8fbe95f570" name="Default" comment="Block.py is fitted">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Block.py" afterPath="$PROJECT_DIR$/Block.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Container.py" afterPath="$PROJECT_DIR$/Container.py" />
     </list>
     <ignored path="gra.iws" />
@@ -28,16 +26,27 @@
       <file leaf-file-name="Container.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Container.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+            <state relative-caret-position="17">
+              <caret line="139" column="21" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
               <folding>
-                <element signature="e#429#597#0" expanded="false" />
-                <element signature="e#654#816#0" expanded="false" />
-                <element signature="e#865#1020#0" expanded="false" />
-                <element signature="e#1059#1252#0" expanded="false" />
-                <element signature="e#1290#2580#0" expanded="false" />
-                <element signature="e#2624#5193#0" expanded="false" />
+                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#465#633#0" expanded="false" />
+                <element signature="e#690#852#0" expanded="false" />
+                <element signature="e#901#1056#0" expanded="false" />
+                <element signature="e#1095#1288#0" expanded="false" />
+                <element signature="e#1326#2616#0" expanded="false" />
+                <element signature="e#79#6211#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="container.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/container.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="38" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -127,6 +136,7 @@
         <option value="$PROJECT_DIR$/Thing.py" />
         <option value="$PROJECT_DIR$/textures.xml" />
         <option value="$PROJECT_DIR$/Block.py" />
+        <option value="$PROJECT_DIR$/container.xml" />
         <option value="$PROJECT_DIR$/Container.py" />
       </list>
     </option>
@@ -521,7 +531,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52996844" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14984228" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27602524" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -559,20 +569,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Human.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Creature.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Display.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -906,17 +902,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/xml/etree/ElementTree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="888" column="23" selection-start-line="888" selection-start-column="23" selection-end-line="888" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/container.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="38" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Container.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+        <state relative-caret-position="17">
+          <caret line="139" column="21" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
           <folding>
-            <element signature="e#429#597#0" expanded="false" />
-            <element signature="e#654#816#0" expanded="false" />
-            <element signature="e#865#1020#0" expanded="false" />
-            <element signature="e#1059#1252#0" expanded="false" />
-            <element signature="e#1290#2580#0" expanded="false" />
-            <element signature="e#2624#5193#0" expanded="false" />
+            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#465#633#0" expanded="false" />
+            <element signature="e#690#852#0" expanded="false" />
+            <element signature="e#901#1056#0" expanded="false" />
+            <element signature="e#1095#1288#0" expanded="false" />
+            <element signature="e#1326#2616#0" expanded="false" />
+            <element signature="e#79#6211#0" expanded="false" />
           </folding>
         </state>
       </provider>

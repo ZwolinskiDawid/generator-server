@@ -1,4 +1,5 @@
 from Block import *
+from xml.etree.ElementTree import *
 
 
 class Container:
@@ -123,6 +124,40 @@ class Container:
 
                             self.map_of_obstacles[i * self.segmentSize + k][j * self.segmentSize + l] = block
 
+    def save_to_xml(self):
+
+        container = Element('container')
+        container.set('size', str(self.size))
+
+        background = SubElement(container, 'background')
+
+        for i in range(self.size):
+            tmp = list()
+            for j in range(self.size):
+                tmp.append(str(self.map[i][j].appearance))
+
+            line = SubElement(background, 'line')
+            line.text = ''.join(tmp)
+
+        foreground = SubElement(container, 'foreground')
+
+        for i in range(self.size):
+            tmp = list()
+            for j in range(self.size):
+                if self.map_of_obstacles[i][j] is not None:
+                    tmp.append(str(self.map_of_obstacles[i][j].appearance))
+                else:
+                    tmp.append('n')
+
+            line = SubElement(foreground, 'line')
+            line.text = ''.join(tmp)
+
+        file = open("container.xml", "w")
+        file.write(tostring(container).decode("utf-8") )
+        file.close()
+
 C = Container()
+C.save_to_xml()
+
 
 
