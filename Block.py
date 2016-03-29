@@ -1,4 +1,5 @@
-from Creature import *
+from Thing import *
+
 
 class Block(Thing):
     blocks = [[] for i in range(2)]

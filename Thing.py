@@ -1,7 +1,5 @@
 from xml.dom import minidom
-import pygame
 import random
-from Position import *
 
 
 class Thing:
