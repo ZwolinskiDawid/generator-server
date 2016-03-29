@@ -2,18 +2,23 @@ from Thing import *
 
 
 class Block(Thing):
-    blocks = [[] for i in range(2)]
+    blocks = list()
 
     @staticmethod
     def read_table():
         dom_tree = minidom.parse("textures.xml")
         c_nodes = dom_tree.childNodes
 
-        types = [[] for i in range(2)]
-        i = 0
+        types_of_block = list()
 
+        # walkable[0] = false, walkable[1] = true
+        for i in range(2):
+            Block.blocks.append(list())
+            types_of_block.append(list())
+
+        i = 0
         for texture in c_nodes[0].getElementsByTagName("texture"):
-            type = texture.getAttribute("type")
+            type_of_block = texture.getAttribute("type")
             walkable = texture.getAttribute("walkable")
 
             if walkable == 'True':
@@ -21,18 +26,17 @@ class Block(Thing):
             else:
                 walkable = 0
 
-            if types[walkable].count(type) == 0:
-                index = len(Block.blocks[walkable])
-                types[walkable].append(type)
-                Block.blocks[walkable].append([Block(walkable, i, index)])
+            if types_of_block[walkable].count(type_of_block) == 0:  # if type has not exist yet
+                types_of_block[walkable].append(type_of_block)
+                Block.blocks[walkable].append(list())
+                index = len(Block.blocks[walkable]) - 1
+                Block.blocks[walkable][index].append(Block(i))
             else:
-                index = types[walkable].index(type)
-                Block.blocks[walkable][index].append(Block(walkable, i, index))
+                index = types_of_block[walkable].index(type_of_block)
+                Block.blocks[walkable][index].append(Block(i))
             i += 1
 
-    def __init__(self, walkable, appearance, type):
+    def __init__(self, appearance):
         Thing.__init__(self, appearance)
-        self.walkable = walkable
-        self.type = type
 
 Block.read_table()
